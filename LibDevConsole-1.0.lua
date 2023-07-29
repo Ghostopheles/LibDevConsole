@@ -37,6 +37,23 @@ function LibDevConsole.AddEcho(message)
     DeveloperConsole:AddMessage(message, colorType.DefaultGreen);
 end
 
+
+-- under construction, nothing to see here
+local function HelpCommandOverride(_, helpText)
+    local helpColor = colorType.WarningColor;
+    local self = LibDevConsole;
+    if not helpText then
+        local helpStr = "Console help categories:\n"
+        local categories = {}
+        for k, _ in pairs(self.CommandCategory) do
+            tinsert(categories, k);
+        end
+        strjoin(", ", helpStr, unpack(categories));
+
+        self.AddMessage(helpStr, helpColor)
+    end
+end
+
 LibDevConsole.CustomCommandFunctions = { -- contains the function mappings of our custom commands
     libdev = function() LibDevConsole.AddMessage("Hello world!") return true; end, -- secret :p
 };
@@ -88,7 +105,7 @@ local function CommandExecuteOverride(input)
         end
     else
         -- not our command - return false and let the console execute it
-        return false, false;
+        return false, true;
     end
 end
 
