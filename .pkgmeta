@@ -1,4 +1,4 @@
-package-as: LibDevConsole
+package-as: LibDevConsole-1.0
 enable-nolib-creation: no
 
 license-output: LICENSE
