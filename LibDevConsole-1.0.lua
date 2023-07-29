@@ -116,7 +116,7 @@ DeveloperConsole:SetExecuteCommandOverrideFunction(CommandExecuteOverride);
 local ExampleCommandInfo = {
     help = "Say 'hello world!'", -- help text that shows up in the auto-complete window
     category = Enum.ConsoleCategory.Game, -- Enum.ConsoleCategory
-    command = "previewCustomizationChoice", -- the command itself
+    command = "myCommand", -- the command itself
     scriptParameters = "", -- not sure what this does
     scriptContents = "", -- this is a mystery too
     commandType = Enum.ConsoleCommandType.Script, -- Enum.ConsoleCommandType
