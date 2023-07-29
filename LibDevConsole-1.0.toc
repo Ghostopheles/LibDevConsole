@@ -1,0 +1,14 @@
+## Interface: 100105
+## Title: Lib: LibDevConsole
+## Notes: A collection of cadaverous tools for integrating with the Blizzard Developer Console.
+## Author: Ghostopheles
+## Version: @project-version@
+## IconAtlas: minortalents-icon-book
+
+## OptionalDeps: LibStub
+
+## X-License: Public Domain
+## X-Category: Library
+
+LibStub/LibStub.lua
+LibDevConsole-1.0.lua
