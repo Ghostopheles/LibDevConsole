@@ -10,7 +10,7 @@ local LibDevConsole = LibStub:GetLibrary("LibDevConsole");
 
 local MyCommandInfo = {
     help = "Say 'hello world!'", -- help text that shows up in the auto-complete window
-    catgory = Enum.ConsoleCategory.Game, -- Enum.ConsoleCategory
+    category = Enum.ConsoleCategory.Game, -- Enum.ConsoleCategory
     command = "myCommand", -- the command itself
     scriptParameters = "", -- not sure what this does
     scriptContents = "", -- this is a mystery too
