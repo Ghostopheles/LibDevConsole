@@ -5,6 +5,10 @@ local major, minor = "LibDevConsole", 1;
 --- @class LibDevConsole
 local LibDevConsole = LibStub:NewLibrary(major, minor);
 
+if not LibDevConsole then
+    return;
+end
+
 local commandType = Enum.ConsoleCommandType;
 local commandCategory = Enum.ConsoleCategory;
 local colorType = Enum.ConsoleColorType;
