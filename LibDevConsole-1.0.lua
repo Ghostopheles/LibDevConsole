@@ -89,7 +89,7 @@ end
 _G.C_Console.GetAllCommands = GetAllCommandsOverride;
 
 -- The return values from this are important - it returns two boolean values.
--- The first return indicates success, if false, the console will attempt to ConsoleExec the command itself.
+-- The first return indicates success, if false, the console will attempt to `ConsoleExec` the command itself.
 -- Second return indicates whether or not the command should be added to the command history - should usually be true regardless of success.
 local function CommandExecuteOverride(input)
     assert(not issecure(), "THIS SHOULD NOT BE SECURE??");
