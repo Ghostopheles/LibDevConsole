@@ -12,7 +12,7 @@ end
 local commandType = Enum.ConsoleCommandType;
 local commandCategory = Enum.ConsoleCategory;
 local colorType = Enum.ConsoleColorType;
-local GetAllBaseCommands = _G.C_Console.GetAllCommands;
+local GetAllBaseCommands = C_Console and C_Console.GetAllCommands or ConsoleGetAllCommands;
 
 LibDevConsole.CommandType = commandType;
 LibDevConsole.CommandCategory = commandCategory;
@@ -86,7 +86,11 @@ local function GetAllCommandsOverride()
     return LibDevConsole.AllCommands;
 end
 
-_G.C_Console.GetAllCommands = GetAllCommandsOverride;
+if C_Console then
+    C_Console.GetAllCommands = GetAllCommandsOverride;
+else
+    ConsoleGetAllCommands = GetAllCommandsOverride;
+end
 
 -- The return values from this are important - it returns two boolean values.
 -- The first return indicates success, if false, the console will attempt to `ConsoleExec` the command itself.
