@@ -18,5 +18,5 @@ local MyCommandInfo = {
     commandFunc = function() LibDevConsole.AddMessage("Hello World!") end, -- this is the function the command executes
 };
 
-local success = LibDevConsole:RegisterCommand(MyCommandInfo);
+local success = LibDevConsole.RegisterCommand(MyCommandInfo);
 ```
