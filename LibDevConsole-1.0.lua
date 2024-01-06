@@ -134,7 +134,7 @@ local ExampleCommandInfo = {
 --- Register a custom console command
 ---@param commandInfo ConsoleCommandInfo
 ---@return boolean
-function LibDevConsole:RegisterCommand(commandInfo)
+function LibDevConsole.RegisterCommand(commandInfo)
     local commandName = commandInfo.command;
     assert(type(commandName) == "string", "CommandInfo.command is not a string.");
 
@@ -154,15 +154,15 @@ function LibDevConsole:RegisterCommand(commandInfo)
         commandInfo.scriptParameters = "";
     end
 
-    if tContains(self.CustomCommandInfo, commandInfo) then
+    if tContains(LibDevConsole.CustomCommandInfo, commandInfo) then
         LibDevConsole.AddMessage("Attempted to register existing command: " .. commandName);
         return false;
     end
 
-    tinsert(self.CustomCommandInfo, commandInfo);
-    self.CustomCommandFunctions[commandName] = commandFunc;
+    tinsert(LibDevConsole.CustomCommandInfo, commandInfo);
+    LibDevConsole.CustomCommandFunctions[commandName] = commandFunc;
 
     UpdateCommands();
-    self.AddMessage("Registered command: " .. commandName);
+    LibDevConsole.AddMessage("Registered command: " .. commandName);
     return true;
 end
