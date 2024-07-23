@@ -1,4 +1,4 @@
-## Interface: 100105
+## Interface: 110000
 ## Title: Lib: LibDevConsole
 ## Notes: A collection of cadaverous tools for integrating with the Blizzard Developer Console.
 ## Author: Ghostopheles
