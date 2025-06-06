@@ -144,3 +144,38 @@ function LibDevConsole.RegisterCommand(commandInfo)
     LibDevConsole.AddMessage("Registered command: " .. commandName);
     return true;
 end
+
+------------
+--- metatable madness
+
+local mt = {
+    __index = function(self, key)
+        return _G[key];
+    end
+};
+
+local luaEnv = {
+    print = function(...)
+        local msg = strjoin(" ", tostringall(...));
+        LibDevConsole.AddMessage(msg);
+    end
+};
+setmetatable(luaEnv, mt);
+
+local function Echo(success, result, ...)
+    if result ~= nil then
+        if success then
+            local msg = strjoin(" ", tostringall(result, ...));
+            LibDevConsole.AddEcho(msg);
+        else
+            LibDevConsole.AddError(result);
+        end
+    end
+end
+
+--- Echo the results of a function to the console
+---@param func function
+---@param ... any
+function LibDevConsole.RunAndEcho(func, ...)
+    Echo(pcallwithenv(func, luaEnv, ...));
+end
