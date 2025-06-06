@@ -107,7 +107,7 @@ local ExampleCommandInfo = {
     scriptContents = "", -- this is a mystery too
     commandType = Enum.ConsoleCommandType.Script, -- Enum.ConsoleCommandType
     commandFunc = function() LibDevConsole.AddMessage("Hello World!") end, -- this is the function the command executes
-}
+};
 
 --- Register a custom console command
 ---@param commandInfo ConsoleCommandInfo
