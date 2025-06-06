@@ -12,7 +12,7 @@ end
 local commandType = Enum.ConsoleCommandType;
 local commandCategory = Enum.ConsoleCategory;
 local colorType = Enum.ConsoleColorType;
-local GetAllBaseCommands = C_Console and C_Console.GetAllCommands or ConsoleGetAllCommands;
+local GetAllBaseCommands = ConsoleGetAllCommands;
 
 LibDevConsole.CommandType = commandType;
 LibDevConsole.CommandCategory = commandCategory;
@@ -41,25 +41,8 @@ function LibDevConsole.AddEcho(message)
     DeveloperConsole:AddMessage(message, colorType.DefaultGreen);
 end
 
-
--- under construction, nothing to see here
-local function HelpCommandOverride(_, helpText)
-    local helpColor = colorType.WarningColor;
-    local self = LibDevConsole;
-    if not helpText then
-        local helpStr = "Console help categories:\n"
-        local categories = {}
-        for k, _ in pairs(self.CommandCategory) do
-            tinsert(categories, k);
-        end
-        strjoin(", ", helpStr, unpack(categories));
-
-        self.AddMessage(helpStr, helpColor)
-    end
-end
-
 LibDevConsole.CustomCommandFunctions = { -- contains the function mappings of our custom commands
-    libdev = function() LibDevConsole.AddMessage("Hello world!") return true; end, -- secret :p
+    libdev = function() LibDevConsole.AddMessage("Hello world!"); return true; end, -- secret :p
 };
 LibDevConsole.CustomCommandInfo = {}; -- table where our custom commands will be kept
 LibDevConsole.AllCommands = {}; -- table that will contain all base commands + our custom ones, for auto-complete
@@ -86,17 +69,12 @@ local function GetAllCommandsOverride()
     return LibDevConsole.AllCommands;
 end
 
-if C_Console then
-    C_Console.GetAllCommands = GetAllCommandsOverride;
-else
-    ConsoleGetAllCommands = GetAllCommandsOverride;
-end
+ConsoleGetAllCommands = GetAllCommandsOverride;
 
 -- The return values from this are important - it returns two boolean values.
 -- The first return indicates success, if false, the console will attempt to `ConsoleExec` the command itself.
 -- Second return indicates whether or not the command should be added to the command history - should usually be true regardless of success.
 local function CommandExecuteOverride(input)
-    assert(not issecure(), "THIS SHOULD NOT BE SECURE??");
     local inputSplit = {strsplit(" ", input)};
     local command = inputSplit[1];
     local args = {select(2, unpack(inputSplit))};
